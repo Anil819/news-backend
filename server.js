@@ -29,6 +29,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://news-frontend-olive.vercel.app",
   "https://svims-news.netlify.app"
 ];
 const PORT = process.env.PORT || 5000;
