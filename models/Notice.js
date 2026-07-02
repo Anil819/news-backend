@@ -15,11 +15,6 @@ const noticeSchema = new mongoose.Schema(
       type: String,
       default: ''
     },
-
-      imagePublicId: {
-      type: String,
-      default: "",
-    },
     // Who should see this notice. 'All' shows to every visitor, including guests.
     audience: {
       type: String,

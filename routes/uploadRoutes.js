@@ -1,22 +1,11 @@
-// 
-import express from "express";
-import upload from "../middleware/upload.js";
+import express from 'express'
+import { uploadImage } from '../controllers/uploadController.js'
+import { protect, restrictTo } from '../middleware/auth.js'
+import upload from '../middleware/upload.js'
 
-const router = express.Router();
+const router = express.Router()
 
-router.post("/upload", upload.single("image"), async (req, res) => {
-  try {
-    res.status(200).json({
-      success: true,
-      imageUrl: req.file.path,
-      publicId: req.file.filename,
-    });
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+router.post('/', protect, restrictTo('admin', 'teacher'), upload.single('image'), uploadImage)
 
-export default router;
+export default router
+
