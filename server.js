@@ -38,6 +38,13 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+app.use((err, req, res, next) => {
+  console.error("ERROR:", err);
+  res.status(err.status || 500).json({
+    message: err.message,
+  });
+});
+
 app.use(
   cors({
     origin: function (origin, callback) {

@@ -1,14 +1,34 @@
-import asyncHandler from 'express-async-handler'
+// import asyncHandler from "express-async-handler";
 
-// @desc    Upload a single image (used for news/event/gallery image fields)
-// @route   POST /api/upload
-// @access  Private/Admin,Teacher
+// export const uploadImage = asyncHandler(async (req, res) => {
+//   if (!req.file) {
+//     res.status(400);
+//     throw new Error("No file uploaded.");
+//   }
+
+//   res.status(201).json({
+//     success: true,
+//     url: req.file.path,       // Cloudinary image URL
+//     public_id: req.file.filename,
+//   });
+// });
+
+import asyncHandler from "express-async-handler";
+
 export const uploadImage = asyncHandler(async (req, res) => {
+  console.log("====== UPLOAD ======");
+  console.log("req.file =", req.file);
+
   if (!req.file) {
-    res.status(400)
-    throw new Error('No file uploaded.')
+    return res.status(400).json({
+      success: false,
+      message: "No file uploaded",
+    });
   }
 
-  const url = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
-  res.status(201).json({ success: true, url })
-})
+  res.status(201).json({
+    success: true,
+    url: req.file.path,
+    public_id: req.file.filename,
+  });
+});
