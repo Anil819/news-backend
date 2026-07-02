@@ -1,13 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Notice from '../models/Notice.js'
 
-// @desc    Get notices visible to the current visitor
-//          - Guests see only audience "All"
-//          - Logged-in students see "All" + "Student"
-//          - Logged-in teachers see "All" + "Teacher"
-//          - Logged-in admins see everything (?audience= can override)
-// @route   GET /api/notices
-// @access  Public (audience-filtered)
 export const getNotices = asyncHandler(async (req, res) => {
   const now = new Date()
   const filter = {

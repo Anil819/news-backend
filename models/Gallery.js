@@ -16,6 +16,10 @@ const gallerySchema = new mongoose.Schema(
       type: String,
       required: [true, 'Image URL is required']
     },
+      imagePublicId: {
+      type: String,
+      default: "",
+    },
     uploadedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
