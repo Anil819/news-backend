@@ -17,6 +17,8 @@ import contactRoutes from "./routes/contactRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import noticeRoutes from "./routes/noticeRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";  
+import listEndpoints from "express-list-endpoints";
 
 dotenv.config();
 
@@ -61,7 +63,6 @@ app.use(
   })
 );
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -75,6 +76,9 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/news", newsRoutes);
@@ -84,7 +88,9 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/notices", noticeRoutes);
+app.use("/api/ai", aiRoutes);
 
+ 
 app.use(notFound);
 app.use(errorHandler);
 
